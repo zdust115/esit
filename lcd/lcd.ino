@@ -13,4 +13,8 @@ void setup() {
 
 void loop() {
   // Niente nel loop
+  Wire.beginTransmission(0x27);  // Inizia la comunicazione con il dispositivo all'indirizzo 0x27
+Wire.write("Hello");  // Invia il messaggio "Hello" al dispositivo I2C
+Wire.endTransmission();  // Termina la trasmissione
+
 }
