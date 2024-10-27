@@ -1,36 +1,37 @@
 #include <ESP8266WiFi.h>
 
-//const char* SSID = "IoT-UNICA";
-//const char* PASSWORD = "I@T_unic@2019";
-
-const char* SSID = "Wind3Frau";
+// Rete e password
+const char* SSID = "Wind3 Frau";
 const char* PASSWORD = "4nd1yjynbgoyv0ce";
-
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial);
-  delay(10000);
+  delay(1000);  // Breve ritardo per assicurarsi che Serial sia pronto
+  
   Serial.println();
-  Serial.println("Mac: ");
+  Serial.print("Mac Address: ");
   Serial.println(WiFi.macAddress());
   Serial.println();
-  WiFi.mode(WIFI_STA);
+  
   setup_wifi();
+  Serial.print("Indirizzo IP: ");
   Serial.println(WiFi.localIP());
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Codice principale da eseguire continuamente
 }
 
 void setup_wifi() {
   delay(10);
-  Serial.println("Attempting WIFI connection...");
-  WiFi.begin(SSID, PASSWORD);
+  Serial.println("Tentativo di connessione a WIFI...");
+  
+  WiFi.mode(WIFI_STA);           // Modalità stazione (client)
+  WiFi.begin(SSID, PASSWORD);     // Avvia la connessione
+
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.println(WiFi.status());
+    Serial.print(".");            // Stampa punti come indicatore di attesa
   }
-  Serial.println("Wi-Fi connected!");
+  Serial.println("\nWi-Fi connesso!");
 }

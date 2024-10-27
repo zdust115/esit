@@ -1,7 +1,12 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-const char* ssid = "IoT-UNICA";
-const char* password = "I@T-unic@2019";
+//const char* ssid = "IoT-UNICA";
+//const char* password = "I@T-unic@2019";
+
+// Rete e password casa
+const char* ssid = "Wind3 Frau";
+const char* password = "4nd1yjynbgoyv0ce";
+
 const char* mqtt_server = "broker.mqtt-dashboard.com";
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -11,7 +16,7 @@ int led_status = 0;
 void setup() {
   pinMode(BUILTIN_LED, OUTPUT);
   Serial.begin(115200);
-  delay(10000); //delay per attendere la porta seriale
+  delay(1000); //delay per attendere la porta seriale
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
@@ -21,10 +26,13 @@ void setup() {
 void setup_wifi() {
   delay(10);
   Serial.println("Attempting WIFI connection...");
+
+  WiFi.mode(WIFI_STA);           // Modalità stazione (client)
   WiFi.begin(ssid, password);
+
   while (WiFi.status() != WL_CONNECTED) {
-    Serial.println("Tentativo Fallaceo");  
     delay(500);
+    Serial.print(".");  
   }
   Serial.println("WiFi connected");
 }
@@ -53,7 +61,7 @@ void reconnect() {
       client.publish("LedStatus", "LED Status");
       client.subscribe("LedDrive");
     } else {
-      Serial.println("Tentativo fallaceo");
+      Serial.print(".");
       delay(6000);
     }
   }
