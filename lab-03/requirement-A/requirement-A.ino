@@ -1,7 +1,6 @@
 #define LED 5 // D1(gpio5)
 #define LIGHTSENSOR A0 // A/D Port
 void setup() {
-pinMode(LED, OUTPUT); Serial.begin(115200);
 // Initialize the LED pin as an output
 }
 void loop() {
