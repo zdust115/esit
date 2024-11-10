@@ -6,7 +6,7 @@ const char* PASSWORD = "4nd1yjynbgoyv0ce";
 
 void setup() {
   Serial.begin(115200);
-  delay(1000);  // Breve ritardo per assicurarsi che Serial sia pronto
+  delay(5000);  // Breve ritardo per assicurarsi che Serial sia pronto
   
   Serial.println();
   Serial.print("Mac Address: ");
