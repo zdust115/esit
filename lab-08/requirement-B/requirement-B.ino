@@ -8,7 +8,7 @@ void setup() {
   pinMode(GPIO_Pin2, INPUT);
   pinMode(GPIO_Pin3, INPUT);
   attachInterrupt(digitalPinToInterrupt(GPIO_Pin2), IntCallbackRising, RISING);
-  attachInterrupt(digitalPinToInterrupt(GPIO_Pin3), IntCallbackFalling, RISING);
+  attachInterrupt(digitalPinToInterrupt(GPIO_Pin3), IntCallbackFalling, FALLING);
 }
 void loop() {
 }
